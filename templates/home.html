@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="/static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/static/css/main.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-01 p-t-180 p-b-100">
+        <div class="wrapper wrapper--w780">
+            <div class="card card-3">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">CONVERTOR DE IMAGE</h2>
+                    <form method="POST" enctype="multipart/form-data" id="formUpload">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input class="input--style-3" type="file" placeholder="image" name="image" required>
+                        </div>
+                        <div class="compressor">
+                            <label for="" class="wdht">Compress / Resize</label>
+                            <div class="form-group comp">
+                                <label for="" class="wd">width</label>
+                                <div class="input-group">
+                                    <input class="input--style-4 form-control" type="number" name="width" value=0>
+                                </div>
+                                <label for="" class="ht">height</label>
+                                <div class="input-group">
+                                    <input class="input--style-4 form-control" type="number" name="height" value=0>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resolution">
+                            <label for="" class="wdht">Resolution </label>
+                            <div class="form-group resol">
+                                <label for="" class="wd">quality</label>
+                                <div class="input-group">
+                                    <input class="input--style-4 form-control" type="number" name="quality" value=0>
+                                </div>
+                                <label for="" class="ht">enhance</label>
+                                <div class="input-group">
+                                    <input class="input--style-4 form-control" type="number" name="enhance" value=0>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-image">
+                            <label for="" class="form-label flp">Flip Image</label>
+                            <select name="flip" class="flp form-control">
+                                    <option disabled="disabled" selected="selected" value="">Choose To Flip</option>
+                                    <option>flip left right</option>
+                                    <option>flip top bottom</option>
+                                </select>
+                            <div class="select-dropdown"></div>
+                        </div> <br> <br>
+                        <label for="" class="form-label rot">Rotate Image</label>
+                        <div class="rotate-image">
+                            <div class="rotate1">
+                                <select name="rotate" class="flp form-control">
+                                        <option disabled="disabled" selected="selected">Choose To Rotate</option>
+                                        <option value=90>rotate 90</option>
+                                        <option value=180>rotate 180</option>
+                                        <option value=270>rotate 270</option>
+                                    </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                            <div class="rotate2">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" placeholder="custom rotate" name="rotate-custom">
+                                </div>
+                            </div>
+                        </div> <br>
+                        <label for="" class="form-label trans">Color Transform</label>
+                        <div class="trans-image">
+                            <select name="colortransform" class="trans form-control">
+                                    <option disabled="disabled" selected="selected" value="">Choose Color Format</option>
+                                    <option value="l">L</option>
+                                    <option value="rbg">RBG</option>
+                                    <option value="cmyk">CMYK (cyan, magenta, yellow, black)</option>
+                            </select>
+                            <div class="select-dropdown"></div>
+                        </div> <br>
+                        <div class="p-t-10" style="text-align: center;">
+                            <button class="btn-info btn--green" style="border-radius: 10px;height: 30px; width: 100px;" type="submit">Process</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {% block content %} {% endblock %}
+    </div>
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/cropper.min.js' %}"></script>
+    {% block javascript %} {% endblock %}
+    <!-- Jquery JS-->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="/static/vendor/select2/select2.min.js"></script>
+
+    <!-- Main JS-->
+    <script src="/static/js/global.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+    </script>
+</body>
+
+</html>
